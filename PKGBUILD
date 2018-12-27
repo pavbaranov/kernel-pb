@@ -7,6 +7,9 @@
 ### BUILD OPTIONS
 # Set these variables to ANYTHING that is not null to enable them
 
+### Enable fancontrol for DELL
+_dell_fancontrol=
+
 ### Set performance governor as default
 _per_gov=y
 
@@ -39,7 +42,7 @@ _localmodcfg=y
 _use_current=y
 
 ### Disable Deadline I/O scheduler
-_deadline_disable=
+_deadline_disable=y
 
 ### Disable CFQ I/O scheduler
 _CFQ_disable=y
@@ -48,7 +51,7 @@ _CFQ_disable=y
 _kyber_disable=y
 
 ### Disable MQ scheduling
-_mq_disable=y
+_mq_disable=
 
 ### Running with a 1000 HZ tick rate
 _1k_HZ_ticks=y
@@ -65,7 +68,7 @@ pkgrel=2
 arch=('x86_64')
 url="https://github.com/Algodev-github/bfq-mq/"
 license=('GPL2')
-makedepends=('kmod' 'inetutils' 'bc' 'libelf' 'python-sphinx' 'graphviz' 'lzop')
+makedepends=('kmod' 'inetutils' 'bc' 'libelf' 'lzop')
 options=('!strip')
 _bfqpath="https://gitlab.com/tom81094/custom-patches/raw/master/bfq-mq"
 _lucjanpath="https://gitlab.com/sirlucjan/kernel-patches/raw/master/4.20"
@@ -181,6 +184,13 @@ prepare() {
         sed -i -e 's/^CONFIG_HZ_300=y/# CONFIG_HZ_300 is not set/' \
             -i -e 's/^# CONFIG_HZ_1000 is not set/CONFIG_HZ_1000=y/' \
             -i -e 's/^CONFIG_HZ=300/CONFIG_HZ=1000/' ./.config
+        fi
+
+    ### Enable fancontrol
+        if [ -n "$_dell_fancontrol" ]; then
+        msg "Enabling I8K for Dell..."
+        sed -i -e s'/^CONFIG_I8K=m/CONFIG_I8K=y/' \
+            -i -e s'/^CONFIG_SENSORS_DELL_SMM=m/CONFIG_SENSORS_DELL_SMM=y/' ./.config    
         fi
 
     ### Set performance governor
