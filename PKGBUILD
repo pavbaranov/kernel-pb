@@ -7,9 +7,6 @@
 ### BUILD OPTIONS
 # Set these variables to ANYTHING that is not null to enable them
 
-### Enable fancontrol for DELL
-_dell_fancontrol=
-
 ### Set performance governor as default
 _per_gov=y
 
@@ -64,7 +61,7 @@ _major=4.20
 pkgver=4.20
 _srcpatch="${pkgver}"
 _srcname="linux-${pkgver}"
-pkgrel=2
+pkgrel=3
 arch=('x86_64')
 url="https://github.com/Algodev-github/bfq-mq/"
 license=('GPL2')
@@ -85,6 +82,7 @@ _uksm_ver="uksm-${_major}"
 _uksm_ver_2="uksm-${_major}-rc1"
 _pds_path="https://gitlab.com/alfredchen/PDS-mq/raw/master/${_major}"
 _pds_ver=v4.20_pds099i
+_pavbaranov_path="https://raw.githubusercontent.com/pavbaranov/kernel-pb/master"
 
 source=(# mainline kernel patches
         "https://www.kernel.org/pub/linux/kernel/v4.x/${_srcname}.tar.xz"
@@ -119,6 +117,10 @@ source=(# mainline kernel patches
         "${_lucjanpath_2}/pf-fixes-sep/0004-memstick-rtsx_usb_ms-Use-ms_dev-helper.patch"
         "${_lucjanpath_2}/pf-fixes-sep/0005-memstick-rtsx_usb_ms-Support-runtime-power-managemen.patch"
         "${_lucjanpath_2}/pf-fixes-sep/0006-block-bfq-fix-comments-on-__bfq_deactivate_entity.patch"
+        #Alexandre Frade patches from xanmod linux
+        "${_pavbaranov_path}/set-128_2048-kb-to-read-ahead-for-filesystem.patch"
+        "${_pavbaranov_path}/add-500Hz-timer-interrupt-kernel-config-option.patch"
+        "${_pavbaranov_path}/decreases-the-amount-of-swapping.patch"
         )
 
 sha256sums=('ad0823183522e743972382df0aa08fb5ae3077f662b125f1e599b0b2aaa12438'
@@ -141,7 +143,10 @@ sha256sums=('ad0823183522e743972382df0aa08fb5ae3077f662b125f1e599b0b2aaa12438'
             '87ede2b1d2e287eaa8b672fd25ebbfd3a046b2635190b3374115c4ea8196f6c8'
             '9100e5746d021af84eee6c50f4dd58700ce15a4edbc428667d003973b388e4f7'
             '0ec4d1beddf7f3b6631bc7f5af9811d54886ccfd6362e6c6177975f176453026'
-            '772932d2fdb0a71fb78c541a1a1400413ab1cfbc8bad72d95ee365a938432b09')
+            '772932d2fdb0a71fb78c541a1a1400413ab1cfbc8bad72d95ee365a938432b09'
+            'afd45945954e3aab0261943b7b31da224335fc538c820088ea78b20b75d8323f'
+            'f035ed25b1dcc24d9bdfa613af10818ac6534849090b07f4c881ea63fbaf217f'
+            'faa1c173abd2b69df46c772c61dc68879e2c76a34ca5bb4bbd930f599c77b114')
 validpgpkeys=(
               '647F28654894E3BD457199BE38DBBDC86092693E' # Greg Kroah-Hartman
              )
