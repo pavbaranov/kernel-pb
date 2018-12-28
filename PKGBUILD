@@ -93,7 +93,7 @@ source=(# mainline kernel patches
         "${_lucjanpath}/${_bfq_sq_mq_path}/${_bfq_sq_mq_patch}"
         "${_lucjanpath_2}/${_bfq_sq_mq_path}-dev/0001-bfq-Increase-BLKCG_MAX_POLS.patch"
         # Additional patches
-        "${_lucjanpath}/0100-Check-presence-on-tree-of-every-entity-after-every-a.patch"
+        "${_lucjanpath_2}/0100-Check-presence-on-tree-of-every-entity-after-every-a.patch"
         "${_lucjanpath}/pf-miscellaneous/0001-add-sysctl-to-disallow-unprivileged-CLONE_NEWUSER-by.patch"
         # UKSM patch
         "${_uksm_path}/${_uksm_ver}".patch
@@ -121,6 +121,9 @@ source=(# mainline kernel patches
         "${_pavbaranov_path}/set-128_2048-kb-to-read-ahead-for-filesystem.patch"
         "${_pavbaranov_path}/add-500Hz-timer-interrupt-kernel-config-option.patch"
         "${_pavbaranov_path}/decreases-the-amount-of-swapping.patch"
+        #Dragon kernel patches:
+        "${_pavbaranov_path}/fix-depends-for-BLK_CGROUP_IOLATENCY.patch"
+        "${_pavbaranov_path}/fix-enables-BFQ-MQ-multi-queue-IO-scheduling-by-default.patch"
         )
 
 sha256sums=('ad0823183522e743972382df0aa08fb5ae3077f662b125f1e599b0b2aaa12438'
@@ -146,7 +149,9 @@ sha256sums=('ad0823183522e743972382df0aa08fb5ae3077f662b125f1e599b0b2aaa12438'
             '772932d2fdb0a71fb78c541a1a1400413ab1cfbc8bad72d95ee365a938432b09'
             'afd45945954e3aab0261943b7b31da224335fc538c820088ea78b20b75d8323f'
             'f035ed25b1dcc24d9bdfa613af10818ac6534849090b07f4c881ea63fbaf217f'
-            'faa1c173abd2b69df46c772c61dc68879e2c76a34ca5bb4bbd930f599c77b114')
+            'faa1c173abd2b69df46c772c61dc68879e2c76a34ca5bb4bbd930f599c77b114'
+            '3e9a8489bbe29ad100c01a8810318537148d6e9d4f9ebc688c7967294dcdc38b'
+            '7d8d13b0a1d1ff1465833791da1f6a0c68537f3cbe55543c27755e57248184de')
 validpgpkeys=(
               '647F28654894E3BD457199BE38DBBDC86092693E' # Greg Kroah-Hartman
              )
