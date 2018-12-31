@@ -61,11 +61,11 @@ _major=4.20
 pkgver=4.20
 _srcpatch="${pkgver}"
 _srcname="linux-${pkgver}"
-pkgrel=3
+pkgrel=4
 arch=('x86_64')
 url="https://github.com/Algodev-github/bfq-mq/"
 license=('GPL2')
-makedepends=('kmod' 'inetutils' 'bc' 'libelf' 'lzop')
+makedepends=('kmod' 'inetutils' 'bc' 'libelf' 'lzop' 'graphviz' 'python-sphinx')
 options=('!strip')
 _bfqpath="https://gitlab.com/tom81094/custom-patches/raw/master/bfq-mq"
 _lucjanpath="https://gitlab.com/sirlucjan/kernel-patches/raw/master/4.20"
@@ -81,7 +81,7 @@ _uksm_patch_2="https://raw.githubusercontent.com/zaza42/uksm/master"
 _uksm_ver="uksm-${_major}"
 _uksm_ver_2="uksm-${_major}-rc1"
 _pds_path="https://gitlab.com/alfredchen/PDS-mq/raw/master/${_major}"
-_pds_ver=v4.20_pds099i
+_pds_ver=v4.20_pds099j
 _pavbaranov_path="https://raw.githubusercontent.com/pavbaranov/kernel-pb/master"
 
 source=(# Arch kernel patches
@@ -97,7 +97,6 @@ source=(# Arch kernel patches
         "${_uksm_path}/${_uksm_ver}".patch
         # PDS patch
         "${_pds_path}/${_pds_ver}".patch
-        Fix-missing-mainline-scheduler-API-for-psi.patch::"https://gitlab.com/alfredchen/linux-pds/commit/b065cb11f1c039edcc2bbd10a82fcaf18b20d87d.diff"
          # the main kernel config files
         'config'
          # pacman hook for depmod
@@ -117,8 +116,6 @@ source=(# Arch kernel patches
         "${_lucjanpath_2}/pf-fixes-sep/0006-block-bfq-fix-comments-on-__bfq_deactivate_entity.patch"
         #Alexandre Frade patches from xanmod linux
         "${_pavbaranov_path}/set-128_2048-kb-to-read-ahead-for-filesystem.patch"
-#        "${_pavbaranov_path}/add-500Hz-timer-interrupt-kernel-config-option.patch"
-        "${_pavbaranov_path}/add-750Hz-timer-interrupt-kernel-config-option.patch"
         "${_pavbaranov_path}/decreases-the-amount-of-swapping.patch"
         #Dragon kernel patches:
         "${_pavbaranov_path}/fix-enables-BFQ-MQ-multi-queue-IO-scheduling-by-default.patch"
@@ -131,8 +128,7 @@ sha256sums=('76569e189ecf2cf71dc109f76a43f9b652dec935e4cf47ec40a99a7bc9821653'
             '2cb5ecec3fc61d86da443570eede67ed11e098f4603e2c1a7d50b3267a88df23'
             'eb3cb1a9e487c54346b798b57f5b505f8a85fd1bc839d8f00b2925e6a7d74531'
             '2da4d705fe5be8ac9b5af68c48ddb5b925f2f756cb84c4c66ad05279676503a1'
-            'ea3bb3f97297ac6c5d2feefc428873004e18013333478656a0521d53055b8980'
-            'd98895434951e8df12faa0a6f15ffc0958eb81ed56cd754846890defebc15ee3'
+            '7af2125e2f08369b611298d2fddbd58817d321ca47704c9390f1e66e8ba910c0'
             'de9c8dabf9e3287786aac2f26377d7b82131112cf703ee7a93a1664f0e2b6d05'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
             'c043f3033bb781e2688794a59f6d1f7ed49ef9b13eb77ff9a425df33a244a636'
@@ -145,7 +141,6 @@ sha256sums=('76569e189ecf2cf71dc109f76a43f9b652dec935e4cf47ec40a99a7bc9821653'
             '0ec4d1beddf7f3b6631bc7f5af9811d54886ccfd6362e6c6177975f176453026'
             '772932d2fdb0a71fb78c541a1a1400413ab1cfbc8bad72d95ee365a938432b09'
             'afd45945954e3aab0261943b7b31da224335fc538c820088ea78b20b75d8323f'
-            '13489b1f5941988bcff9b75c683261ccfa19ef03b2b4f4a5d94513a1a62b1b0d'
             'faa1c173abd2b69df46c772c61dc68879e2c76a34ca5bb4bbd930f599c77b114'
             '7d8d13b0a1d1ff1465833791da1f6a0c68537f3cbe55543c27755e57248184de'
             '3e9a8489bbe29ad100c01a8810318537148d6e9d4f9ebc688c7967294dcdc38b')
